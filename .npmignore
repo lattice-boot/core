@@ -1,0 +1,10 @@
+node_modules/
+
+example/
+src/
+.gitignore
+index.ts
+tsconfig.json
+.gitlab-ci.yml
+
+**/__test__/
