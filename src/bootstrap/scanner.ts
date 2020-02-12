@@ -61,7 +61,7 @@ export class EndpointScanner {
     else if (filePath.indexOf('node_modules\\') == 0)
       filePath = filePath.replace(/node_modules\\/, '');
     else
-      filePath = path.join(relativePrefix, filePath);
+      filePath = path.resolve(path.join(relativePrefix, filePath));
     require(filePath);
   }
 
