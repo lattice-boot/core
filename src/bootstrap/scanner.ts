@@ -12,7 +12,7 @@ export class EndpointScanner {
   private exclues: (string | RegExp)[] = ['node_modules'];
 
   createServer() {
-    this.dfsImport('./node_modules/@lattice', false);
+    this.dfsImport('node_modules/@lattice', false);
     this.dfsImport(this.entrance);
     return rootContainer.get(Application);
   }
@@ -58,6 +58,8 @@ export class EndpointScanner {
   private require(filePath: string) {
     if (filePath.indexOf('node_modules/') == 0)
       filePath = filePath.replace(/node_modules\//, '');
+    else if (filePath.indexOf('node_modules\\') == 0)
+      filePath = filePath.replace(/node_modules\\/, '');
     else
       filePath = path.join(relativePrefix, filePath);
     require(filePath);
