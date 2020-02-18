@@ -23,14 +23,15 @@ export class UriMatchersCtx {
 
   private challengeUri(uri: string) {
     uri = UriUtils.clean(uri);
-    let methodsMap = this.map[uri];
+    const path = uri.substring(0, uri.indexOf('?'));
+    let methodsMap = this.map[path];
     if (methodsMap) {
       // hit root
       return methodsMap;
     } else {
       // search tree
       let target: any = this.map;
-      for (const child of uri.split('/')) {
+      for (const child of path.split('/')) {
         if (!child) continue;
         target = target[child] ? target[child] : target[':'];
         if (!target) return null;
