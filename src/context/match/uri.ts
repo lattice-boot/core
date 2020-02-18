@@ -23,7 +23,8 @@ export class UriMatchersCtx {
 
   private challengeUri(uri: string) {
     uri = UriUtils.clean(uri);
-    const path = uri.substring(0, uri.indexOf('?'));
+    const queryChart = uri.indexOf('?');
+    const path = queryChart == -1 ? uri : uri.substring(0, queryChart);
     let methodsMap = this.map[path];
     if (methodsMap) {
       // hit root
