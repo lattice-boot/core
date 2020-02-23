@@ -4,7 +4,7 @@ import { rootContainer } from '@core/inject';
 import { Application } from '.';
 
 const relativePrefix = __dirname.substring(process.cwd().length, __dirname.length).split('').reduce((result, char) => {
-  if (char == '/') result += '../';
+  if (char == '/' || char == '\\') result += '../';
   return result;
 }, './');
 
@@ -61,7 +61,7 @@ export class EndpointScanner {
     else if (filePath.indexOf('node_modules\\') == 0)
       filePath = filePath.replace(/node_modules\\/, '');
     else
-      filePath = path.resolve(path.join(relativePrefix, filePath));
+      filePath = path.join(relativePrefix, filePath);
     require(filePath);
   }
 
